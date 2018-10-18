@@ -1,5 +1,9 @@
 package com.qa.dotdash.tests;
 
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -30,13 +34,13 @@ public class DotDashTest {
     // remove existing category if exists
     removeCategory("Bills");
     // Category Textfield
-    category.CategoryTextField.sendKeys("Bills");
+    category.addCategoryTextField.sendKeys("Bills");
     // Selecting color for category
-    Select dropdown1 = new Select(category.SelectCategory);
-    dropdown1.selectByVisibleText("Yellow");
+    Select colourDropdown = new Select(category.SelectCategoryColor);
+    colourDropdown.selectByValue("#0000FF");
     // Clicking on Add Color Category Button
     category.addCategoryColorButton.click();
-    // Remove Button
+    
     try {
       WebElement categoryElement = driver.findElement(By.xpath("//span[contains(text(),'Bills')]"));
       // Assert.assertEquals(categoryElement.getAttribute("style"), "color: #0000FF; padding:
@@ -52,8 +56,8 @@ public class DotDashTest {
   public void addBasicTodo() {
     CategoryPO category = new CategoryPO(driver);
     category.advancedLink.click();
-    category.CategoryTextField.sendKeys("spinach");
-    category.addCategoryAddButton.click();
+    category.todoText.sendKeys("spinach");
+    category.addTodoButton.click();
   }
 
   @Test
@@ -63,11 +67,11 @@ public class DotDashTest {
     removeTodo("Spinach");
 
     // create item
-    categoryPO.CategoryTextField.sendKeys("Spinach");
-    categoryPO.addCategoryAddButton.click();
+    categoryPO.todoText.sendKeys("Spinach");
+    categoryPO.addTodoButton.click();
     // create duplicate todo
-    categoryPO.CategoryTextField.sendKeys("Spinach");
-    categoryPO.addCategoryAddButton.click();
+    categoryPO.todoText.sendKeys("Spinach");
+    categoryPO.addTodoButton.click();
 
     // check for error message/links
     DuplictePO errorPage = new DuplictePO(driver);
@@ -119,37 +123,42 @@ public class DotDashTest {
   public void completeBasicTodo() {}
 
   @Test
-  public void addTodoWithCategory() {
+  public void addTodoWithAdvancedOptions() {
     CategoryPO category = new CategoryPO(driver);
+    removeTodo("groceries");
+    
     // Category Textfield
-    category.CategoryTextField.sendKeys("Bills");
+    category.todoText.sendKeys("groceries");
+
     // selecting category
-    Select dropdown1 = new Select(category.SelectCategory);
+    Select dropdown1 = new Select(category.selectCategory);
     dropdown1.selectByVisibleText("Personal");
+
+    Date date = new Date();
+    Calendar calendar = new GregorianCalendar();
+    calendar.setTime(date);
+    int year = calendar.get(Calendar.YEAR);
+    //Add one to month {0 - 11}
+    int month = calendar.get(Calendar.MONTH) + 1;
+    int day = calendar.get(Calendar.DAY_OF_MONTH);
     // Selecting Due Day
-    Select dropdown2 = new Select(category.SelectDueDay);
-    dropdown2.selectByValue("19");
+    Select daySelectBox = new Select(category.SelectDueDay);
+    daySelectBox.selectByValue("" + day);
     // Selecting Due Month
-    Select dropdown3 = new Select(category.SelectDueMonth);
-    dropdown3.selectByValue("10");
+    Select monthSelectBox = new Select(category.SelectDueMonth);
+    monthSelectBox.selectByValue("" + month);
     // Selecting Due Year
-    Select dropdown4 = new Select(category.SelectDueYear);
-    dropdown4.selectByValue("2018");
-    // Clicking on Category button
-    category.addCategoryAddButton.click();
+    Select yearSelectBox = new Select(category.SelectDueYear);
+    yearSelectBox.selectByValue("" + year);
+
+    // Clicking on Add button
+    category.addTodoButton.click();
     // Selecting color for category
-    // category.SelectCategoryColor.selectByVisibleText("Yellow");
-    // Add category name
-    category.addCategoryTextField.sendKeys("Bills");
-    // Clicking on Add Color Category Button
-    category.addCategoryColorButton.click();
-    // Remove Button
-    category.removeButton.click();
-    category.completeButton.click();
+    removeTodo("groceries");
   }
 
   @AfterMethod
   public void TearDown() {
-    driver.close();
+    driver.quit();
   }
 }

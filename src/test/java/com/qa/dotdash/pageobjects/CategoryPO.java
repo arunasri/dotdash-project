@@ -17,9 +17,10 @@ public class CategoryPO {
     }
     
     @FindBy(how = How.XPATH, using = "//input[@name='data']")
-    public WebElement CategoryTextField;
-    @FindBy(how = How.XPATH, using = "//select[@name='colour']")
-    public WebElement SelectCategory;
+    public WebElement todoText;
+    
+    @FindBy(how = How.XPATH, using = "//select[@name='category']")
+    public WebElement selectCategory;
     @FindBy(how = How.XPATH, using = "//select[@name='due_day']")
     public WebElement SelectDueDay;
     @FindBy(how = How.XPATH, using = "//select[@name='due_month']")
@@ -27,13 +28,13 @@ public class CategoryPO {
     @FindBy(how = How.XPATH, using = "//select[@name='due_year']")
     public WebElement SelectDueYear;
     @FindBy(how = How.XPATH, using = "//input[@value='Add']")
-    public WebElement addCategoryAddButton;
+    public WebElement addTodoButton;
     @FindBy(how = How.XPATH, using = "//input[@name='categorydata']")
     public WebElement addCategoryTextField;
     @FindBy(how = How.PARTIAL_LINK_TEXT, using = "Advanced")
     public WebElement advancedLink;
    
-    @FindBy(how = How.XPATH, using = "//input[@name='colour']")
+    @FindBy(how = How.XPATH, using = "//select[@name='colour']")
     public WebElement SelectCategoryColor;
    
     @FindBy(how = How.XPATH, using = "//input[@value='Add category']")
