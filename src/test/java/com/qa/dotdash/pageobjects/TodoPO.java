@@ -5,9 +5,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
-public class CategoryPO extends BasePO {
+public class TodoPO extends BasePO {
 
-  public CategoryPO(WebDriver driver) {
+  public TodoPO(WebDriver driver) {
     super(driver);
   }
 

@@ -8,14 +8,14 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-import com.qa.dotdash.pageobjects.CategoryPO;
-import com.qa.dotdash.pageobjects.DuplictePO;
+import com.qa.dotdash.pageobjects.TodoPO;
+import com.qa.dotdash.pageobjects.DuplicteTodoPO;
 
 public class TodoTest extends BaseUITest {
 
   @Test
   public void addBasicTodo() {
-    CategoryPO category = new CategoryPO(driver);
+    TodoPO category = new TodoPO(driver);
     category.advancedLink.click();
     category.todoText.sendKeys("spinach");
     category.addTodoButton.click();
@@ -23,7 +23,7 @@ public class TodoTest extends BaseUITest {
 
   @Test
   public void addDuplicateBasicTodo() {
-    CategoryPO categoryPO = new CategoryPO(driver);
+    TodoPO categoryPO = new TodoPO(driver);
     // remove existing elements with spinach
     removeTodo("Spinach");
 
@@ -35,7 +35,7 @@ public class TodoTest extends BaseUITest {
     categoryPO.addTodoButton.click();
 
     // check for error message/links
-    DuplictePO errorPage = new DuplictePO(driver);
+    DuplicteTodoPO errorPage = new DuplicteTodoPO(driver);
     SoftAssert softAsserts = new SoftAssert();
 
     softAsserts.assertTrue(
@@ -55,7 +55,7 @@ public class TodoTest extends BaseUITest {
 
     @Test
   public void addTodoWithAdvancedOptions() {
-    CategoryPO category = new CategoryPO(driver);
+    TodoPO category = new TodoPO(driver);
     removeTodo("groceries");
 
     // Category Textfield

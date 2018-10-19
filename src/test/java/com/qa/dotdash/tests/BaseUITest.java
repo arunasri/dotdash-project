@@ -7,7 +7,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
-import com.qa.dotdash.pageobjects.CategoryPO;
+import com.qa.dotdash.pageobjects.TodoPO;
 
 public class BaseUITest extends BaseTest {
   public WebDriver driver;
@@ -21,7 +21,7 @@ public class BaseUITest extends BaseTest {
 
   public void removeTodo(String todoName) {
     try {
-      CategoryPO categoryPO = new CategoryPO(driver);
+      TodoPO categoryPO = new TodoPO(driver);
       // remove existing elements with spinach
       WebElement existingElement =
           driver.findElement(By.xpath("//li[contains(text(),'" + todoName + "')]"));
@@ -44,7 +44,7 @@ public class BaseUITest extends BaseTest {
   }
 
   public void deleteBasicTodo() {
-    CategoryPO category = new CategoryPO(driver);
+    TodoPO category = new TodoPO(driver);
   }
 
   @AfterMethod

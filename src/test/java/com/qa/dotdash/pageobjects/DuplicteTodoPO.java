@@ -5,10 +5,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
-public class DuplictePO extends BasePO {
+public class DuplicteTodoPO extends BasePO {
 
   // Constructor
-  public DuplictePO(WebDriver driver) {
+  public DuplicteTodoPO(WebDriver driver) {
     super(driver);
   }
 

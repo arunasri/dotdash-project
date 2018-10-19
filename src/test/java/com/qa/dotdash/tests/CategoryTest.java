@@ -6,12 +6,12 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import com.qa.dotdash.pageobjects.CategoryPO;
+import com.qa.dotdash.pageobjects.TodoPO;
 
 public class CategoryTest extends BaseUITest {
   @Test
   public void addingCategoryTestcase() {
-    CategoryPO category = new CategoryPO(driver);
+    TodoPO category = new TodoPO(driver);
     // remove existing category if exists
     removeCategory("Bills");
     // Category Textfield
@@ -35,7 +35,7 @@ public class CategoryTest extends BaseUITest {
 
   @Test
   public void removeCategory() {
-    CategoryPO category = new CategoryPO(driver);
+    TodoPO category = new TodoPO(driver);
     // remove existing category if exists
     removeCategory("Bills");
     // Category Textfield
