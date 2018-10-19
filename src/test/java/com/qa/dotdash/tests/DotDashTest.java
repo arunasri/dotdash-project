@@ -23,7 +23,7 @@ public class DotDashTest {
   private String URL = "http://192.168.64.2/dotdash/index.php";
 
   @BeforeMethod
-  public void SetUP() {
+  public void SetUp() {
     driver = new ChromeDriver();
     driver.get(URL);
   }
